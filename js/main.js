@@ -290,18 +290,18 @@
     });
     window.setTimeout(function () {
       line.classList.add("is-typed");
-    }, 2500);
+    }, 2400);
   }
 
   function startRotation() {
     if (!motionOK) return;
     window.clearInterval(rotateTimer);
-    var begin = function () {
+    window.setTimeout(function () {
+      showKeyword(keywordIndex + 1, true);
       rotateTimer = window.setInterval(function () {
         showKeyword(keywordIndex + 1, true);
       }, 2800);
-    };
-    window.setTimeout(begin, 2600);
+    }, 3200);
   }
 
   function setupReveal() {
@@ -389,6 +389,7 @@
     function setOpen(open) {
       menuOpen = open;
       nav.classList.toggle("is-open", open);
+      document.body.classList.toggle("menu-open", open);
       btn.setAttribute("aria-expanded", open ? "true" : "false");
       btn.textContent = open ? t("navMenuClose") : t("navMenu");
     }

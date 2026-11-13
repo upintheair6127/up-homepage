@@ -22,6 +22,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body.menu-open {
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   color: var(--ink);
@@ -423,6 +427,7 @@ input {
   padding-bottom: 1rem;
   margin-bottom: clamp(1.75rem, 4vw, 3rem);
   border-bottom: 1px solid var(--line);
+  scroll-margin-top: calc(var(--nav-h) + 0.85rem);
 }
 
 .sec-head h2 {
@@ -530,15 +535,19 @@ input {
   line-height: 1.7;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .card:hover {
-    border-color: var(--blue);
-    background: var(--wash);
-    transform: translateY(-4px);
-  }
+.card:hover {
+  border-color: var(--blue);
+  background-color: var(--wash);
+  transform: translateY(-4px);
+}
 
-  .card:hover::before {
-    transform: scaleY(1);
+.card:hover::before {
+  transform: scaleY(1);
+}
+
+@media (hover: none) {
+  .card:hover {
+    transform: none;
   }
 }
 
@@ -640,13 +649,17 @@ input {
   transition: transform 0.2s ease;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .platforms a:hover {
-    color: var(--blue);
-  }
+.platforms a:hover {
+  color: var(--blue);
+}
 
+.platforms a:hover .p-name {
+  transform: translateX(4px);
+}
+
+@media (hover: none) {
   .platforms a:hover .p-name {
-    transform: translateX(4px);
+    transform: none;
   }
 }
 
@@ -738,6 +751,9 @@ input {
 
   .nav-links.is-open {
     display: flex;
+    min-height: calc(100dvh - var(--nav-h));
+    background: #fff;
+    z-index: 5;
   }
 
   .nav-links a {
